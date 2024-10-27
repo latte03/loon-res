@@ -1,7 +1,5 @@
-// import axios from 'axios'
-import $httpClient from './requet'
+import { $done, $notification, $httpClient, $persistentStore } from './utils/loon'
 
-// const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg'
 const url2 = `https://i.y.qq.com/n2/m/share/details/toplist.html?ADTAG=ryqq.toplist&type=0&id=${27}`
 
 const headers = {
@@ -14,16 +12,23 @@ $httpClient.get(
     url: url2,
     headers: headers
   },
-  (errormsg, res, data) => {
+  (errorMsg, res, data) => {
+    if (errorMsg) {
+      $notification.post('QQ音乐热歌榜:请求错误', '', errorMsg)
+      return
+    }
+    if (!data) return
     const htmlSnippet = data
     const parsedData = getPageData(htmlSnippet)
-    const song = (parsedData.toplistData.song as Song[]).slice(0, 10)
+    const songCount = Number($persistentStore.read('songCount') || '10')
+    const song = (parsedData.toplistData.song as Song[]).slice(0, songCount)
     const content = song
       .map((s: Song) => {
         return `${s.rank}、${s.title} - ${s.singerName}`
       })
       .join('\n')
-    console.log(content)
+    $notification.post('QQ音乐热歌榜', '', content)
+    $done()
   }
 )
 

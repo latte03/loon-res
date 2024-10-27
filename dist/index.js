@@ -4,13 +4,27 @@
 //   get(params, fn) {
 //     const { url, ...others } = params;
 //     axios.get(url, others).then((res) => {
-//       fn(null, res, res.data);
+//       fn(void 0, res, res.data);
 //     }).catch((error) => {
 //       fn(error, void 0, void 0);
 //     });
 //   }
 // }
 // const $httpClient = new HttpClient();
+
+// const $notification = {
+//   /**
+//    *
+//    * @param title 标题
+//    * @param subtitle 副标题
+//    * @param content 通知内容
+//    * @param attach 通知的附件 通知带的一个图片\视频url或者点击通知时的触发的openurl
+//    */
+//   post(title, subtitle, content, attach) {
+//     console.log(`${title}
+// ${subtitle}${content}`, attach ? attach : "");
+//   }
+// };
 
 const url2 = `https://i.y.qq.com/n2/m/share/details/toplist.html?ADTAG=ryqq.toplist&type=0&id=${27}`
 const headers = {
@@ -22,16 +36,22 @@ $httpClient.get(
     url: url2,
     headers
   },
-  (errormsg, res, data) => {
+  (errorMsg, res, data) => {
+    if (errorMsg) {
+      $notification.post('QQ\u97F3\u4E50\u70ED\u6B4C\u699C:\u8BF7\u6C42\u9519\u8BEF', '', errorMsg)
+      return
+    }
+    if (!data) return
     const htmlSnippet = data
     const parsedData = getPageData(htmlSnippet)
-    const song = parsedData.toplistData.song.slice(0, 10)
+    const songCount = Number('10')
+    const song = parsedData.toplistData.song.slice(0, songCount)
     const content = song
       .map((s) => {
         return `${s.rank}\u3001${s.title} - ${s.singerName}`
       })
       .join('\n')
-    console.log(content)
+    $notification.post('QQ\u97F3\u4E50\u70ED\u6B4C\u699C', '', content)
   }
 )
 function getPageData(htmlSnippet) {
