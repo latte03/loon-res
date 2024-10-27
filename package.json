@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch  src/index.ts",
+    "dev": "cross-env NODE_ENV=development tsx watch src/index.ts",
+    "vite:dev": "vite-node src/index.ts",
     "vite:build": "vite build",
     "pkgroll": "pkgroll"
   },
@@ -13,13 +14,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.7",
-    "tsx": "^4.19.2",
-    "unplugin-auto-import": "^0.18.3",
-    "vite": "^5.4.10"
+    "axios": "^1.7.7"
   },
   "devDependencies": {
+    "tsx": "^4.19.2",
+    "vite": "^5.4.10",
+    "@types/node": "^22.8.1",
+    "cross-env": "^7.0.3",
     "pkgroll": "^2.5.1",
-    "vite-plugin-conditional-compiler": "^0.3.1"
+    "vite-plugin-conditional-compiler": "^0.3.1",
+    "unplugin-auto-import": "^0.18.3"
   }
 }

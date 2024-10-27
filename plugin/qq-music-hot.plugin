@@ -1,6 +1,12 @@
 #!name=QQ音乐热歌榜
-#!desc=QQ音乐热歌榜面板。
+#!desc=QQ音乐热歌榜面板，songCount 热榜前几首，建议10以内的数字。
+#!author = 拿铁☕[https://github.com/latte03/loon-res/blob/main/readme.md]
+#!icon= https://raw.githubusercontent.com/sooyaaabo/Loon/main/Icon/App/QQMusic.png
+#!loon_version = 3.2.2(749)
+
 #!input = songCount
+#!select=榜单类型,巅峰榜·流行指数,巅峰榜·热歌,国乐榜,巅峰榜·新歌,飙升榜,说唱榜,电音榜,巅峰榜·网络歌曲,巅峰榜·内地,巅峰榜·欧美,香港地区榜,巅峰榜·韩国,抖音热歌榜,巅峰榜·影视金曲,巅峰榜·日本,巅峰榜·MV,巅峰榜·腾讯音乐人原创榜,巅峰榜·K歌金曲,台湾地区榜,DJ舞曲榜,综艺新歌榜,国风热歌榜,听歌识曲榜,动漫音乐榜,游戏音乐榜,有声榜
+
 
 [Script]
-cron "15 15 15 ? * *" script-path=https://raw.githubusercontent.com/latte03/loon-res/refs/heads/main/dist/index.js, timeout=10, tag=QQ音乐热歌榜, argument=""
+cron "15 15 15 ? * *" script-path=https://raw.githubusercontent.com/latte03/loon-res/refs/heads/main/dist/qq-music-hot.js, timeout=10, tag=QQ音乐热歌榜, argument=""

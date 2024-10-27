@@ -1,7 +1,7 @@
 export { default as $httpClient } from './requet'
 
 export function $done(params?: any) {
-  console.log('%c Line:5 🍎', 'color:#ea7e5c')
+  console.log('🍎 done ', '')
 }
 
 export const $notification = {
@@ -18,16 +18,17 @@ export const $notification = {
 }
 
 export const $persistentStore = {
-  read(key: string) {
-    console.log('%c Line:21 🌽', 'color:#42b983', key)
-    return '10'
+  read(key: string): any {
+    console.log(`persistentStore read ${key}`)
+    return
   },
   write(value: string, key: string) {
-    console.log('%c Line:25 🍺', 'color:#7f2b82')
+    console.log(`persistentStore write  key:${key} value:${value}`)
+
     return true
   },
 
   remove() {
-    console.log('%c Line:30 🥤', 'color:#2eafb0')
+    console.log(`persistentStore remove`)
   }
 }
