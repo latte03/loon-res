@@ -13,9 +13,10 @@ export default defineConfig({
     target: 'esnext',
     lib: {
       entry: './src/index.ts',
-      formats: ['cjs'],
-      name: 'index.js'
+      formats: ['es'],
+      name: 'index',
+      fileName: 'index'
     },
-    minify: false
+    minify: true
   }
 })
