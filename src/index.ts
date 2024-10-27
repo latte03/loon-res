@@ -1,5 +1,6 @@
+// #v-ifdef DEV
 import { $done, $notification, $httpClient, $persistentStore } from './utils/loon'
-
+// #v-endif
 const url2 = `https://i.y.qq.com/n2/m/share/details/toplist.html?ADTAG=ryqq.toplist&type=0&id=${27}`
 
 const headers = {
