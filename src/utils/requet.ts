@@ -7,7 +7,7 @@ class HttpClient {
     axios
       .get(url, others)
       .then((res) => {
-        fn(undefined, res, res.data)
+        fn(undefined, res, typeof res.data === 'string' ? res.data : JSON.stringify(res.data))
       })
       .catch((error) => {
         fn(error, undefined, undefined)

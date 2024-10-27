@@ -1,1 +1,1 @@
-import('./script/qq-music-hot')
+import('./script/oil')

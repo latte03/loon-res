@@ -36,6 +36,9 @@ importers:
       vite-plugin-conditional-compiler:
         specifier: ^0.3.1
         version: 0.3.1(esbuild@0.23.1)(rollup@4.24.1)(vite@5.4.10(@types/node@22.8.1))
+      vite-plugin-inline-imports:
+        specifier: ^0.1.1
+        version: 0.1.1(vite@5.4.10(@types/node@22.8.1))
 
 packages:
 
@@ -944,6 +947,11 @@ packages:
   vite-plugin-conditional-compiler@0.3.1:
     resolution: {integrity: sha512-nsvK6U99PuiLpINEfgoX48Gxz4csnzrBELVl8L/swMd7OmQUxdyg2/x0rxH6Mzj+6EaCg0SAyz7W0OA0B6iaVA==}
 
+  vite-plugin-inline-imports@0.1.1:
+    resolution: {integrity: sha512-XD8JHfcSkCsLqKLYPS8qd60mmX9lqrx+ymYLuRTBBCKRYm+cALnXWtaF4cjkdl25/M8z2nflmf+pVXj3YhF5IA==}
+    peerDependencies:
+      vite: ^4.0.0 || ^5.0.0
+
   vite@5.4.10:
     resolution: {integrity: sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -1749,6 +1757,10 @@ snapshots:
       - vite
       - webpack
       - webpack-sources
+
+  vite-plugin-inline-imports@0.1.1(vite@5.4.10(@types/node@22.8.1)):
+    dependencies:
+      vite: 5.4.10(@types/node@22.8.1)
 
   vite@5.4.10(@types/node@22.8.1):
     dependencies:

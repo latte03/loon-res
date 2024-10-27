@@ -1,7 +1,7 @@
 function l(o, e, t, n) {
   $notification.post(o, e, t, n), console.log(`${o}
 ${e}
- ${t}
+${t}
 `);
 }
 const g = {
