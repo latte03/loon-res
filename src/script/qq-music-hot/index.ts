@@ -1,6 +1,7 @@
 // #v-ifdef DEV
-import { $done, $notification, $httpClient, $persistentStore } from '../../utils/loon'
+import { $done, $httpClient, $persistentStore } from '../../utils/loon'
 // #v-endif
+import { notification } from '../../utils/notification'
 
 const topMap: Record<string, number> = {
   '巅峰榜·流行指数': 4,
@@ -93,7 +94,7 @@ function main() {
     },
     (errorMsg, res, data) => {
       if (errorMsg) {
-        $notification.post(`QQ音乐${topType}:请求错误`, '', errorMsg)
+        notification(`QQ音乐${topType}:请求错误`, '', errorMsg)
         return
       }
       if (!data) return
@@ -105,8 +106,9 @@ function main() {
         .map((s: Song) => {
           return `${s.rank}、${s.title} - ${s.singerName}`
         })
-        .join('\n')
-      $notification.post(`QQ音乐${topType}`, '', content)
+        .join('\n ')
+      notification(`QQ音乐${topType}`, '', content)
+
       $done()
     }
   )

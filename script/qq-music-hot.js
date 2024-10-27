@@ -1,4 +1,10 @@
-const l = {
+function l(o, e, t, n) {
+  $notification.post(o, e, t, n), console.log(`${o}
+${e}
+ ${t}
+`);
+}
+const g = {
   "巅峰榜·流行指数": 4,
   "巅峰榜·热歌": 26,
   国乐榜: 78,
@@ -25,21 +31,21 @@ const l = {
   动漫音乐榜: 72,
   游戏音乐榜: 73,
   有声榜: 75
-}, g = "巅峰榜·流行指数", a = $persistentStore.read("榜单类型") || g, f = l[a], m = `https://i.y.qq.com/n2/m/share/details/toplist.html?ADTAG=ryqq.toplist&type=0&id=${f}`, h = {
+}, f = "巅峰榜·流行指数", c = $persistentStore.read("榜单类型") || f, $ = g[c], m = `https://i.y.qq.com/n2/m/share/details/toplist.html?ADTAG=ryqq.toplist&type=0&id=${$}`, h = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 };
-function $(e) {
-  const c = /firstPageData\s*=\s*({[^;]+});?/, t = e.match(/<script>([\s\S]*?)<\/script>/g);
+function u(o) {
+  const e = /firstPageData\s*=\s*({[^;]+});?/, t = o.match(/<script>([\s\S]*?)<\/script>/g);
   let n;
   if (t)
-    for (let s of t) {
-      let o = s.match(c);
-      if (o) {
-        const p = o[1];
+    for (let r of t) {
+      let s = r.match(e);
+      if (s) {
+        const p = s[1];
         try {
           n = JSON.parse(p);
-        } catch (r) {
-          console.error("JSON 格式化错误:", r);
+        } catch (i) {
+          console.error("JSON 格式化错误:", i);
         }
         break;
       }
@@ -48,22 +54,22 @@ function $(e) {
     console.log("没有匹配上的值.");
   return n;
 }
-function u() {
+function d() {
   $httpClient.get(
     {
       url: m,
       headers: h
     },
-    (e, c, t) => {
-      if (e) {
-        $notification.post(`QQ音乐${a}:请求错误`, "", e);
+    (o, e, t) => {
+      if (o) {
+        l(`QQ音乐${c}:请求错误`, "", o);
         return;
       }
       if (!t) return;
-      const s = $(t), o = Number($persistentStore.read("songCount") || "10"), r = s.toplistData.song.slice(0, o).map((i) => `${i.rank}、${i.title} - ${i.singerName}`).join(`
-`);
-      $notification.post(`QQ音乐${a}`, "", r), $done();
+      const r = u(t), s = Number($persistentStore.read("songCount") || "10"), i = r.toplistData.song.slice(0, s).map((a) => `${a.rank}、${a.title} - ${a.singerName}`).join(`
+ `);
+      l(`QQ音乐${c}`, "", i), $done();
     }
   );
 }
-u();
+d();
